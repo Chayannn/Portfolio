@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { motion } from "framer-motion";
+
 import { AppWrap, MotionWrap } from "../../wrapper";
 import { urlFor, client } from "../../client";
 import "./Work.scss";
@@ -25,27 +26,29 @@ const Work = () => {
     setAnimateCard([{ y: 100, opacity: 0 }]);
 
     setTimeout(() => {
-      setAnimateCard([{ y: 100, opacity: 1 }]);
+      setAnimateCard([{ y: 0, opacity: 1 }]);
 
       if (item === "All") {
-        setActiveFilter(works);
+        setFilterWork(works);
       } else {
-        setFilterWork(works.filter((work) => work.tags));
+        setFilterWork(works.filter((work) => work.tags.includes(item)));
       }
     }, 500);
   };
+
   return (
     <>
       <h2 className="head-text">
         My Creative <span>Portfolio</span> Section
       </h2>
+
       <div className="app__work-filter">
         {["UI/UX", "Web App", "Mobile App", "React JS", "All"].map(
           (item, index) => (
             <div
               key={index}
               onClick={() => handleWorkFilter(item)}
-              className={`app__work-filter-item  app__flex p-text ${
+              className={`app__work-filter-item app__flex p-text ${
                 activeFilter === item ? "item-active" : ""
               }`}>
               {item}
@@ -97,6 +100,7 @@ const Work = () => {
               <p className="p-text" style={{ marginTop: 10 }}>
                 {work.description}
               </p>
+
               <div className="app__work-tag app__flex">
                 <p className="p-text">{work.tags[0]}</p>
               </div>
@@ -108,4 +112,4 @@ const Work = () => {
   );
 };
 
-export default AppWrap(MotionWrap(Work, "app__works"), "work", "app__primarybg");
+export default AppWrap(Work, "work", "app__primarybg");

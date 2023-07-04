@@ -30,7 +30,7 @@ const Skills = () => {
         <motion.div className="app__skills-list">
           {skills.map((skill, index) => (
             <motion.div
-              key={index}
+              key={index} // Add a unique key prop based on the index
               whileInView={{ opacity: [0, 1] }}
               transition={{ duration: 0.5 }}
               className="app__skills-item app__flex">
@@ -43,6 +43,7 @@ const Skills = () => {
             </motion.div>
           ))}
         </motion.div>
+
         <div className="app__skills-exp">
           {experiences.map((experience) => (
             <motion.div className="app__skills-exp-item" key={experience.year}>
@@ -80,8 +81,4 @@ const Skills = () => {
   );
 };
 
-export default AppWrap(
-  MotionWrap(Skills, "app__skills"),
-  "skills",
-  "app__whitebg"
-);
+export default AppWrap(Skills, "skills", "app__whitebg");
