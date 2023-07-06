@@ -1,9 +1,14 @@
 import React from "react";
 import { NavigationDots, SocialMedia } from "../components";
+import { motion } from "framer-motion";
 
 const AppWrap = (Component, idName, classNames, bgcolor) => () => {
   return (
-    <div id={idName} className={`app__container ${classNames} ${bgcolor}`}>
+    <motion.div
+      whileInView={{ y: [100, 0], opacity: [0, 1] }}
+      transition={{ duration: 0.5 }}
+      id={idName}
+      className={`app__container ${classNames} ${bgcolor}`}>
       <SocialMedia />
       <div className="app__wrapper app__flex">
         <Component />
@@ -14,7 +19,7 @@ const AppWrap = (Component, idName, classNames, bgcolor) => () => {
         </div>
       </div>
       <NavigationDots active={idName} />
-    </div>
+    </motion.div>
   );
 };
 
