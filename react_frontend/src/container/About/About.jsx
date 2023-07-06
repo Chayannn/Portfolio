@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./About.scss";
 import { urlFor, client } from "../../client";
-import { AppWrap} from "../../wrapper";
+import { AppWrap } from "../../wrapper";
 
 const About = () => {
   const [abouts, setAbouts] = useState([]);
@@ -28,7 +28,7 @@ const About = () => {
             transition={{ duration: 0.5, type: "tween" }}
             className="app__profile-item"
             key={about.title + index}>
-            <img src={urlFor(about.imgUrl)} alt={about.title} />
+            <img src={urlFor(about.imgUrl).url()} alt={about.title} />
             <h2 className="bold-text" style={{ marginTop: 20 }}>
               {about.title}
             </h2>
